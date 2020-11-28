@@ -17,7 +17,7 @@ Some necessary parameter and data files are omitted, since they are multiple GB 
 
 In order to make the pipeline user friendly, a Makefile was written to automate the execution of a user-selected process, as well as its dependencies.
 
-To use the Makefile, one must simply install make, and then issue the command "make <target>" in order to build the desired target. Make targets are followed by a colon in the Makefile. Targets intended to be run directly by the user are commented in the Makefile.
+To use the Makefile, one must simply install make, and then issue the command "make <<target>>" in order to build the desired target. Make targets are followed by a colon in the Makefile. Targets intended to be run directly by the user are commented in the Makefile.
   
 To run the processes involved in the pipeline manually, one would need to follow the instructions below.
 
