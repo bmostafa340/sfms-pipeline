@@ -1,5 +1,7 @@
 # sfms-pipeline
-An efficient and automated pipeline for generating a selection of plots from raw photometry data. Some necessary parameter and data files are omitted, since they are multiple GB in size. Some packages such as numpy, scipy, matplotlib, and EAZY would also have been required had this repository been intended for direct use.
+An efficient and automated pipeline for generating a selection of plots from raw photometry data.
+
+# Overview:
 
 At a high level, the goal of the pipeline is to facilitate reevaluation of galaxy properties with a more realistic model of the universe than that which is typically assumed. Specifically, it is conventionally assumed that all galaxies share a temperature of formation that is common with that of the Milky Way, whereas it is expected that the Milky Way's temperature of formation is very much on the low end. A potential consequence might have been that galaxy stellar masses and star formation rates have been overestimated. This pipeline attempts to fit a temperature-like parameter to each galaxy, and to incorporate this temperature in the estimation of galaxy properties in order to evaluate the consequences of the conventional assumption, as well as any temperature-related trends that might arise.
 
@@ -7,8 +9,17 @@ At a slightly lower level, the pipeline analyzes and visualizes large amounts of
 
 In general, the pipeline is organized as follows. The lowest level dependency is the classification of galaxies as star-forming or quiescent by means of UVJ color selection, which takes hours to days depending on the size of the data set and the computational power of the machine. Moving one step higher, each time EAZY is run to fit galaxies with a redshift and a best fit linear combinations of template spectra, 30 - 60 mins are required to translate the text output into npy format in order to speed up processing in future steps. One step higher from there, the computation of galaxy properties from the npy formatted output takes a few minutes. Most processes that depend on the computed galaxy properties run quickly. Generating plots that directly compare galaxy properties takes no more than a minute, and generating plots that analyze the direct comparisons to yield additional insight are similarly quick to run.
 
-Many of the details about what the individual processes do have been abstracted away in the above discussion. The following description of how to run the pipeline manually may reveal some of these details. Due to the specificity of the tools, data, and procedures involved, as well as the complicated nature of the dependencies, it will be quite hard to follow, and the user is not expected to be aware of all of these details.
+Many of the details about what the individual processes do have been abstracted away in the above discussion. More of these details are presented in the Usage section. Due to the specificity of the tools, data, and procedures involved, as well as the complicated nature of the dependencies, it will be quite hard to follow, and the user is not expected to be aware of all of these details.
 
+# Usage:
+
+Some necessary parameter and data files are omitted, since they are multiple GB in size. Some packages such as numpy, scipy, matplotlib, and EAZY would also have been required had this repository been intended for direct use.
+
+In order to make the pipeline user friendly, a Makefile was written to automate the execution of a user-selected process, as well as its dependencies.
+
+To use the Makefile, one must simply install make, and then issue the command "make <target>" in order to build the desired target. Make targets are followed by a colon in the Makefile. Targets intended to be run directly by the user are commented in the Makefile.
+  
+To run the processes involved in the pipeline manually, one would need to follow the instructions below.
 
 Prerequisites:
 
@@ -63,8 +74,3 @@ To print the best-fit intercept vs age of universe equation, ensure Plotting/4 h
 To print the best-fit SFMS equation, ensure Plotting/3 and Plotting/4 have been run with updated information. Then run z_equation.py.
 
 To print the LaTex code for the α-β table, ensure Plotting/3 and Plotting/4 have been run with updated information. Then run z_equation.py.
-
-
-In order to make the pipeline user friendly, a Makefile was written to automate the execution of a user-selected process, as well as its dependencies.
-
-To use the Makefile, one must simply install make, and then issue the command "make <target>" in order to build the desired target. Make targets are followed by a colon in the Makefile. Targets intended to be run directly by the user are commented in the Makefile.
