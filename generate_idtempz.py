@@ -1,3 +1,5 @@
+# Adapted from code produced by Hagan Hensley
+
 from Constants.constants import *
 import numpy as np
 import peakutils
